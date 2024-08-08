@@ -1,0 +1,175 @@
+syntax = "proto3";
+option go_package = "github.com/snower/slock/protocol/protobuf";
+package protobuf;
+
+message ReplSetMember {
+  string host = 1;
+  uint32 weight = 2;
+  uint32 arbiter = 3;
+  uint32 role = 4;
+}
+
+message ReplSet {
+  string name = 1;
+  string gid = 2;
+  uint32 version = 3;
+  uint64 vertime = 4;
+  string owner = 5;
+  repeated ReplSetMember members = 6;
+  uint64 commit_id = 7;
+}
+
+message ArbiterConnectRequest {
+  string from_host = 1;
+  string to_host = 2;
+}
+
+message ArbiterConnectResponse {
+  string err_message = 1;
+}
+
+message ArbiterAnnouncementRequest {
+  string from_host = 1;
+  string to_host = 2;
+  ReplSet replset = 3;
+}
+
+message ArbiterAnnouncementResponse {
+  string err_message = 1;
+}
+
+message ArbiterVoteRequest {
+}
+
+message ArbiterVoteResponse {
+  string err_message = 1;
+  string host = 2;
+  uint32 weight = 3;
+  uint32 arbiter = 4;
+  string aof_id = 5;
+  uint32 role = 6;
+}
+
+message ArbiterProposalRequest {
+  uint64 proposal_id = 1;
+  string aof_id = 2;
+  string host = 3;
+}
+
+message ArbiterProposalResponse {
+  string err_message = 1;
+  uint64 proposal_id = 2;
+}
+
+message ArbiterCommitRequest {
+  uint64 proposal_id = 1;
+  string aof_id = 2;
+  string host = 3;
+}
+
+message ArbiterCommitResponse {
+  string err_message = 1;
+  uint64 commit_id = 2;
+}
+
+message ArbiterStatusRequest {
+}
+
+message ArbiterStatusResponse {
+  string err_message = 1;
+  string aof_id = 2;
+  uint32 role = 3;
+}
+
+message ArbiterMemberStatus {
+  string host = 1;
+  uint32 weight = 2;
+  uint32 arbiter = 3;
+  uint32 role = 4;
+  uint32 status = 5;
+  int64 lastUpdated = 6;
+  int64 lastDelay = 7;
+  int32 lastError = 8;
+  bytes aofId = 9;
+  bool isSelf = 10;
+  bool abstianed = 11;
+  bool closed = 12;
+}
+
+message ArbiterConfigRequest {
+  string host = 1;
+  uint32 weight = 2;
+  uint32 arbiter = 3;
+}
+
+message ArbiterConfigResponse {
+  string name = 1;
+  string gid = 2;
+  uint32 version = 3;
+  uint64 vertime = 4;
+  string owner = 5;
+  repeated ArbiterMemberStatus members = 6;
+  uint64 commit_id = 7;
+}
+
+message ArbiterMemberListRequest {
+  uint32 pollTimeout = 1;
+  uint32 version = 2;
+  uint64 vertime = 3;
+}
+
+message ArbiterMemberListResponse {
+  string name = 1;
+  string gid = 2;
+  uint32 version = 3;
+  uint64 vertime = 4;
+  string owner = 5;
+  repeated ArbiterMemberStatus members = 6;
+  uint64 commit_id = 7;
+}
+
+message ArbiterMemberAddRequest {
+  string host = 1;
+  uint32 weight = 2;
+  uint32 arbiter = 3;
+}
+
+message ArbiterMemberAddResponse {
+  string name = 1;
+  string gid = 2;
+  uint32 version = 3;
+  uint64 vertime = 4;
+  string owner = 5;
+  repeated ArbiterMemberStatus members = 6;
+  uint64 commit_id = 7;
+}
+
+message ArbiterMemberUpdateRequest {
+  string host = 1;
+  uint32 weight = 2;
+  uint32 arbiter = 3;
+}
+
+message ArbiterMemberUpdateResponse {
+  string name = 1;
+  string gid = 2;
+  uint32 version = 3;
+  uint64 vertime = 4;
+  string owner = 5;
+  repeated ArbiterMemberStatus members = 6;
+  uint64 commit_id = 7;
+}
+
+message ArbiterMemberRemoveRequest {
+  string host = 1;
+}
+
+message ArbiterMemberRemoveResponse {
+  string name = 1;
+  string gid = 2;
+  uint32 version = 3;
+  uint64 vertime = 4;
+  string owner = 5;
+  repeated ArbiterMemberStatus members = 6;
+  uint64 commit_id = 7;
+}

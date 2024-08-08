@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "github.com/snower/slock/protocol/protobuf";
+package protobuf;
+
+message SyncRequest{
+    string aof_id = 1;
+}
+
+message SyncResponse{
+    string aof_id = 1;
+}
