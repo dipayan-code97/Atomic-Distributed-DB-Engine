@@ -1,10 +1,5 @@
-# slock
-
-[![Build Status](https://travis-ci.com/snower/slock.svg?branch=master)](https://travis-ci.com/snower/slock)
-
+# Atomic Distributed DB Engine
 High-performance distributed sync service and atomic DB
-
-[中文](README-zh-hans.md)
 
 # About
 
@@ -21,21 +16,6 @@ Can be used for spikes, synchronization, event notification, concurrency control
 * [Protocol](#Protocol)
 * [Client Resources](#client-resources)
 * [Docker](#docker)
-
-# Install
-
-```
-go get github.com/snower/slock
-```
-
-# Quick Start Server
-
-```bash
-./bin/slock -h
-Usage:
-  slock [info]
-        default start slock server
-        info command show db state
 
 Application Options:
       --conf=                                toml conf filename
@@ -414,17 +394,6 @@ Java Client [jaslock](https://github.com/snower/jaslock)
 
 openresty Client [slock-lua-nginx](https://github.com/snower/slock-lua-nginx)
 
-# docker
-
-[build](docker/README.md)
-
-[https://hub.docker.com/repository/docker/sujin190/slock](https://hub.docker.com/repository/docker/sujin190/slock)
-
-```bash 
-docker pull sujin190/slock
-
-docker run -d --name slock -p 5658:5658 slock
-```
 
 # License
 
